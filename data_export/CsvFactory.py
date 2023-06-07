@@ -3,7 +3,7 @@ import csv
 
 def save_instances_to_csv(instances):
     # Dynamically detects object's type
-    class_name = instances[0].__name__
+    class_name = instances[0].__class__.__name__
 
     file_path = f"csv/{class_name}Data.csv"
     # Dynamically get field names from object

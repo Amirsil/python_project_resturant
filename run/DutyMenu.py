@@ -1,11 +1,12 @@
 import csv
-from data_export.DutyData import DutyData
 
+from data_export.CsvFactory import load_instances_from_csv
+from classes.Duty import Duty
 
 class DutyMenu:
     def __init__(self):
         self.fileName = 'csv/DutyData.csv'
-        self.duties = DutyData(self.fileName).load()
+        self.duties = load_instances_from_csv(Duty)
 
     def duration(self):
         try:

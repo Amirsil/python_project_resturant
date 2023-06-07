@@ -1,16 +1,18 @@
-from data_export.MenuData import MenuData
 
 
-class MainMenu:
+
+from classes.Product import Product
+from data_export.CsvFactory import load_instances_from_csv, save_instances_to_csv
+
+
+class MenusMenu:
     def __init__(self):
-        self.fileName = 'csv/MenuData.csv'
-        self.menu_data = MenuData(self.fileName)
-        self.products = self.menu_data.load()
+        self.products = load_instances_from_csv(Product)
 
     def view_menu(self):
         try:
             for product in self.products:
-                print(f"{product.name=}, {product.price=}, {product.id=}")
+                print(f"{product.name}, {product.price}, {product.id}")
         except Exception as e:
             print(f"An error occurred while viewing the menu: {e}")
 
@@ -30,7 +32,7 @@ class MainMenu:
             else:
                 print(f"Error: Product with ID {id} not found.")
 
-            self.menu_data.save(self.products)
+            save_instances_to_csv(self.products)
         except Exception as e:
             print(
                 f"An error occurred while deleting a product from the menu: {e}")
@@ -51,7 +53,7 @@ class MainMenu:
             else:
                 print(f"Error: Product with id {id} does not exist.")
 
-            self.menu_data.save(self.products)
+            save_instances_to_csv(self.products)
         except Exception as e:
             print(f"An error occurred while adding a product to the menu: {e}")
 

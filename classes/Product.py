@@ -1,25 +1,5 @@
 import csv
 
-class ProductData:
-    def __init__(self, filename):
-        self.filename = filename
-
-    def save(self, products):
-        with open(self.filename, 'w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(['name','price','is_vegetrian','id'])
-            for product in products:
-                writer.writerow([product.name, product.price, product.is_vegetrian, product.id])
-
-    def load(self):
-        products = []
-        with open(self.filename, 'r', newline='') as file:
-            reader = csv.DictReader(file)
-            for row in reader:
-                products.append(Product(row['name'], float(row['price']), bool(row['is_vegetarian']),int(row['id'])))
-        return products
-
-
 class Product:
     def __init__(self, name, price, is_vegetarian, id):
         self.name = name

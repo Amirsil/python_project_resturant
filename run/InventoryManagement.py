@@ -1,12 +1,10 @@
-import csv
-from data_export.InventoryManagementData import InventoryManagementData
-
+from classes.InventoryManagement import InventoryManagement
+from data_export.CsvFactory import load_instances_from_csv
 
 class InventoryManagementMain:
     def __init__(self):
         self.fileName = 'csv/InventoryManagementData.csv'
-        self.InventoryManagements = InventoryManagementData(
-            self.fileName).load()
+        self.InventoryManagements = load_instances_from_csv(InventoryManagement)
 
     def is_available(self, product_id):
         for product in self.InventoryManagements:

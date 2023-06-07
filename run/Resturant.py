@@ -1,11 +1,12 @@
 
 
 import csv
-from data_export.ProductData import ProductData
+from classes.Product import Product
+from data_export.CsvFactory import load_instances_from_csv
 from run.DutyMenu import DutyMenu
 from run.IncomeReport import IncomeReportMain
 from run.InventoryManagement import InventoryManagementMain
-from run.MainMenu import MainMenu
+from run.MenusMenu import MenusMenu
 from run.OrderMenu import OrderMain
 from run.ReservationMenu import ReservationMain
 
@@ -13,12 +14,12 @@ from run.ReservationMenu import ReservationMain
 class RestaurantFacade:
     def __init__(self, name):
         self.name = name
-        self.products = ProductData("csv/ProductData.csv").load()
+        self.products = load_instances_from_csv(Product)
         self.duty_menu = DutyMenu()
 
     def open_menu(self):
         print('This is our menu with appetite!')
-        MainMenu().run()
+        MenusMenu().run()
 
     def open_duty_menu(self):
         self.duty_menu.run()
